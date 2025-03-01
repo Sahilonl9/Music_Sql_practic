@@ -1,0 +1,57 @@
+--Who is the senior most employee based on job titles
+--select * From employee 
+--order by levels desc
+--Limit 1
+-- which countries have the most invoices?
+--select Count(*) as c, billing_country
+--From invoice
+--Group by billing_country
+--order by c desc
+-- what are the top 3 values of total invoice?
+--SELECT total From invoice
+--order by total desc
+--limit 3
+-- which city has the best customer? we would like to throw a promotional music festival in the city.
+--we made the most money. write a query that returns one citiy that haass the highest sum of invoices totals. return botht the city name & sum of all the invoices.
+--select Sum(total) as invoice_total, billing_city
+--from invoice
+--group by billing_city
+--order by invoice_total desc
+-- who is the best cutomer? the cutomer who has spent the most money wil be declared the best cutomer.
+--write query that returns the person who has spent the most money.
+--select customer.customer_id, customer.first_name, customer.last_name, Sum(Invoice.total)as total
+--From customer
+--JOIN invoice ON customer.customer_id = invoice.customer_id
+--GROUP BY customer.customer_id
+--Order By total Desc
+--limit 1
+--SELECT DISTINCT email, first_name, last_name
+--FROM customer
+--JOIN invoice ON customer.customer_id = invoice.customer_id
+--JOIN invoice_line ON invoice.invoice_id = invoice_line.invoice_id
+--WHERE track_id IN (
+ --   SELECT track_id 
+ --   FROM track
+ --   JOIN genre ON track.genre_id = genre.genre_id
+ --   WHERE genre.name LIKE 'Rock'
+--)
+--ORDER BY email;
+--Let's invite the artists who have written the most rock music in our dataset. write a query that returns
+-- the artist name and total track count of the top rock bands.
+--select artist.artist_id, artist.name, count(artist.artist_id) AS number_of_songs
+--From track
+--JOIN album ON album.album_id = track.album_id
+--JOIN artist ON artist.artist_id = album.artist_id
+--JOIN genre ON genre.genre_id = track.genre_id
+--WHERE genre.name LIKE 'ROCK'
+--Group by artist.artist_id
+--Order by number_of_songs DESC
+--LIMIT 10
+--Return all the track names that have a song length longer than the average song length.
+--Return the name and milliseconds for each track.order by the songs length with the longests songs listed first 
+--select name,milliseconds
+--From track
+--Where milliseconds > (
+--     Select AVG(milliseconds) as avg_track_length
+--	 From track)
+--order by milliseconds DESC;
